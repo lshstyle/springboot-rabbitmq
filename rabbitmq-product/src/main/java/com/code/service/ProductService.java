@@ -1,4 +1,4 @@
-package com.kingdee.service;
+package com.code.service;
 
 import java.util.Date;
 import java.util.UUID;
@@ -40,9 +40,11 @@ public class ProductService implements RabbitTemplate.ConfirmCallback, RabbitTem
 	}
 
 	public void fanout(String msg) {
-		System.out.println("生产者发送消息：" + msg + " 发送时间：" + new Date());
-		CorrelationData cd = new CorrelationData(UUID.randomUUID().toString());
-		this.rabbitTemplate.convertAndSend("fanout_exchange", "", msg, cd);
+		for (int i = 0; i < 1000; i++) {
+			System.out.println("生产者发送消息：" + msg + " 发送时间：" + new Date());
+			CorrelationData cd = new CorrelationData(UUID.randomUUID().toString());
+			this.rabbitTemplate.convertAndSend("fanout_exchange", "", msg + i, cd);
+		}
 	}
 
 	public void deadFanout(String msg) {

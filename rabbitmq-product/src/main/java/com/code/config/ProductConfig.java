@@ -1,4 +1,4 @@
-package com.kingdee.config;
+package com.code.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
